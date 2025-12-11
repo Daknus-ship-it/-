@@ -1,0 +1,33 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    run-on: ubumtu-lastest
+
+    strategy: 
+      matrix:
+        node-version: (20.x)
+
+    steps:
+    - name: Chectkout repository
+      uses: action/checkout@v3
+
+    - name: Set up Node.js
+      uses: action/setup-node@v3
+      with: 
+        node-version: ${{ martix.node-version }}$
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Star application 
+      run: npm star
